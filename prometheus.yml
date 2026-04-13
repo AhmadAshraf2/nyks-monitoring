@@ -3,20 +3,49 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  # Tendermint consensus metrics + custom promauto metrics (MintedSatsCounter, OracleBlockGauge)
+  # Tendermint consensus metrics + custom promauto metrics
   - job_name: 'nyks-tendermint'
     static_configs:
-      - targets: ['VALIDATOR_IP:26660']
-        labels:
-          chain_id: 'nyks'
+      - targets: ['VALIDATOR_NODE_1_IP:26660']
+        labels: { instance: 'validator-node-1' }
+      - targets: ['VALIDATOR_NODE_2_IP:26660']
+        labels: { instance: 'validator-node-2' }
+      - targets: ['VALIDATOR_NODE_3_IP:26660']
+        labels: { instance: 'validator-node-3' }
+      - targets: ['VALIDATOR_NODE_4_IP:26660']
+        labels: { instance: 'validator-node-4' }
+      - targets: ['VALIDATOR_NODE_5_IP:26660']
+        labels: { instance: 'validator-node-5' }
+      - targets: ['VALIDATOR_NODE_6_IP:26660']
+        labels: { instance: 'validator-node-6' }
+      - targets: ['VALIDATOR_NODE_7_IP:26660']
+        labels: { instance: 'validator-node-7' }
+      - targets: ['SENTRY_NODE_1_IP:26660']
+        labels: { instance: 'sentry-node-1' }
+      - targets: ['SENTRY_NODE_2_IP:26660']
+        labels: { instance: 'sentry-node-2' }
 
-  # Cosmos SDK application telemetry (go-metrics based)
+  # Cosmos SDK application telemetry
   - job_name: 'nyks-cosmos-sdk'
-    metrics_path: '/metrics'
     static_configs:
-      - targets: ['VALIDATOR_IP:1317']
-        labels:
-          chain_id: 'nyks'
+      - targets: ['VALIDATOR_NODE_1_IP:1317']
+        labels: { instance: 'validator-node-1' }
+      - targets: ['VALIDATOR_NODE_2_IP:1317']
+        labels: { instance: 'validator-node-2' }
+      - targets: ['VALIDATOR_NODE_3_IP:1317']
+        labels: { instance: 'validator-node-3' }
+      - targets: ['VALIDATOR_NODE_4_IP:1317']
+        labels: { instance: 'validator-node-4' }
+      - targets: ['VALIDATOR_NODE_5_IP:1317']
+        labels: { instance: 'validator-node-5' }
+      - targets: ['VALIDATOR_NODE_6_IP:1317']
+        labels: { instance: 'validator-node-6' }
+      - targets: ['VALIDATOR_NODE_7_IP:1317']
+        labels: { instance: 'validator-node-7' }
+      - targets: ['SENTRY_NODE_1_IP:1317']
+        labels: { instance: 'sentry-node-1' }
+      - targets: ['SENTRY_NODE_2_IP:1317']
+        labels: { instance: 'sentry-node-2' }
 
   # Prometheus self-monitoring
   - job_name: 'prometheus'
