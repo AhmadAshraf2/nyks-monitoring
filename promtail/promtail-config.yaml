@@ -13,15 +13,15 @@ clients:
     batchsize: 1048576
 
 scrape_configs:
-  # nyksd log files (all servers)
-  - job_name: nyksd
+  # nyksd stdout logs (all servers)
+  - job_name: nyksd-out
     static_configs:
       - targets: [localhost]
         labels:
           service: nyksd
-          __path__: /var/log/nyksd*.log
+          stream: stdout
+          __path__: /var/log/nyksd.out.log
     pipeline_stages:
-      # Parse Tendermint structured JSON logs
       - json:
           expressions:
             level: level
@@ -31,14 +31,32 @@ scrape_configs:
           level:
           module:
 
-  # btcoracle log files (validators only, not on sentry nodes)
-  # Comment out this section on sentry nodes
-  - job_name: btcoracle
+  # nyksd stderr logs (all servers)
+  - job_name: nyksd-err
+    static_configs:
+      - targets: [localhost]
+        labels:
+          service: nyksd
+          stream: stderr
+          __path__: /var/log/nyksd.err.log
+
+  # btcoracle stdout logs (validators only — comment out on sentry nodes)
+  - job_name: btcoracle-out
     static_configs:
       - targets: [localhost]
         labels:
           service: btcoracle
-          __path__: /var/log/btcoracle*.log
+          stream: stdout
+          __path__: /var/log/btcoracle.out.log
+
+  # btcoracle stderr logs (validators only — comment out on sentry nodes)
+  - job_name: btcoracle-err
+    static_configs:
+      - targets: [localhost]
+        labels:
+          service: btcoracle
+          stream: stderr
+          __path__: /var/log/btcoracle.err.log
 
   # Supervisor logs
   - job_name: supervisor

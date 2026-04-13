@@ -270,46 +270,46 @@
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "gridPos": { "h": 8, "w": 24, "x": 0, "y": 29 },
       "id": 17,
-      "title": "Error Logs (nyksd)",
+      "title": "Errors — All Services",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": true },
-      "targets": [{ "expr": "{service=\"nyks\"} |= \"error\" or {service=\"nyks\"} | json | level=\"error\"", "refId": "A" }]
+      "targets": [{ "expr": "{stream=\"stderr\"} or {stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "bars", "fillOpacity": 50 } }, "overrides": [] },
       "gridPos": { "h": 6, "w": 12, "x": 0, "y": 37 },
       "id": 18,
-      "title": "Error Rate by Module",
+      "title": "Error Rate by Service",
       "type": "timeseries",
-      "targets": [{ "expr": "sum by (module)(rate({service=\"nyks\"} | json | level=\"error\" [5m]))", "legendFormat": "{{ module }}" }]
+      "targets": [{ "expr": "sum by (service, host)(rate({stream=\"stderr\"}[5m])) + sum by (service, host)(rate({stream=\"stdout\"} |~ \"(?i)error\" [5m]))", "legendFormat": "{{ host }}/{{ service }}" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "bars", "fillOpacity": 50 } }, "overrides": [] },
       "gridPos": { "h": 6, "w": 12, "x": 12, "y": 37 },
       "id": 19,
-      "title": "Log Volume by Service",
+      "title": "Error Volume by Host",
       "type": "timeseries",
-      "targets": [{ "expr": "sum by (service)(rate({service=~\".+\"}[5m]))", "legendFormat": "{{ service }}" }]
+      "targets": [{ "expr": "sum by (host)(rate({stream=\"stderr\"}[5m]))", "legendFormat": "{{ host }}" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 43 },
       "id": 20,
-      "title": "All Service Logs",
+      "title": "Errors by Service",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{service=~\"$service\"}", "refId": "A" }]
+      "targets": [{ "expr": "{service=~\"$service\", stream=\"stderr\"} or {service=~\"$service\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 43 },
       "id": 21,
-      "title": "Database Logs",
+      "title": "Errors by Host",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{service=~\"zkos_database|zkpass_database|indexer-db\"}", "refId": "A" }]
+      "targets": [{ "expr": "{host=~\"$host\", stream=\"stderr\"} or {host=~\"$host\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
     }
   ],
   "refresh": "30s",
@@ -325,6 +325,17 @@
         "multi": true,
         "name": "service",
         "query": "label_values(service)",
+        "refresh": 2,
+        "type": "query"
+      },
+      {
+        "current": { "selected": true, "text": "All", "value": "$__all" },
+        "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
+        "definition": "label_values(host)",
+        "includeAll": true,
+        "multi": true,
+        "name": "host",
+        "query": "label_values(host)",
         "refresh": 2,
         "type": "query"
       }
