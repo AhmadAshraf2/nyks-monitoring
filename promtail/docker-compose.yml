@@ -1,0 +1,19 @@
+# Deploy this on the VALIDATOR server
+# Add this service to your existing validator docker-compose.yml,
+# or run it standalone with: docker compose -f docker-compose.yml up -d
+
+version: "3.8"
+
+services:
+  promtail:
+    image: grafana/promtail:2.9.4
+    container_name: promtail
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/log/journal:/var/log/journal:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /etc/machine-id:/etc/machine-id:ro
+    command: -config.file=/etc/promtail/config.yaml
+    restart: unless-stopped
+    network_mode: host

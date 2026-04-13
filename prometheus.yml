@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Tendermint consensus metrics + custom promauto metrics (MintedSatsCounter, OracleBlockGauge)
+  - job_name: 'nyks-tendermint'
+    static_configs:
+      - targets: ['VALIDATOR_IP:26660']
+        labels:
+          chain_id: 'nyks'
+
+  # Cosmos SDK application telemetry (go-metrics based)
+  - job_name: 'nyks-cosmos-sdk'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['VALIDATOR_IP:1317']
+        labels:
+          chain_id: 'nyks'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
