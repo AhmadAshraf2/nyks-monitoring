@@ -67,7 +67,7 @@
       "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Peers",
       "type": "stat",
-      "targets": [{ "expr": "avg(tendermint_p2p_peers)", "legendFormat": "peers" }]
+      "targets": [{ "expr": "tendermint_p2p_peers", "legendFormat": "{{ instance }}" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
