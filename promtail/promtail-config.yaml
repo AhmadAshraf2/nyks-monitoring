@@ -20,7 +20,7 @@ scrape_configs:
         labels:
           service: nyksd
           stream: stdout
-          __path__: /var/log/nyksd.out.log
+          __path__: /home/ubuntu/nyks-logs/nyksd.out.log
     pipeline_stages:
       - json:
           expressions:
@@ -38,7 +38,7 @@ scrape_configs:
         labels:
           service: nyksd
           stream: stderr
-          __path__: /var/log/nyksd.err.log
+          __path__: /home/ubuntu/nyks-logs/nyksd.err.log
 
   # btcoracle stdout logs (validators only — comment out on sentry nodes)
   - job_name: btcoracle-out

@@ -11,6 +11,7 @@ services:
       - ./promtail-config.yaml:/etc/promtail/config.yaml
       - promtail-positions:/tmp
       - /var/log:/var/log:ro
+      - /home/ubuntu/nyks-logs:/home/ubuntu/nyks-logs:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     command: -config.file=/etc/promtail/config.yaml
     restart: unless-stopped
