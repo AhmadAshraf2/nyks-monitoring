@@ -97,7 +97,7 @@
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10 } }, "overrides": [] },
-      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 8 },
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 8 },
       "id": 6,
       "title": "Consensus Rounds",
       "type": "timeseries",
@@ -112,7 +112,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 4, "x": 8, "y": 8 },
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 8 },
       "id": 7,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Validators",
@@ -133,7 +133,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 4, "x": 12, "y": 8 },
+      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 8 },
       "id": 8,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Missing Validators",
@@ -154,7 +154,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 4, "x": 16, "y": 8 },
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 8 },
       "id": 9,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Byzantine Validators",
@@ -171,7 +171,7 @@
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10 } }, "overrides": [] },
-      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 15 },
+      "gridPos": { "h": 6, "w": 12, "x": 0, "y": 15 },
       "id": 12,
       "title": "Oracle BTC Block Heights",
       "type": "timeseries",
@@ -193,7 +193,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 15 },
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 15 },
       "id": 13,
       "title": "Oracle Divergence",
       "type": "timeseries",
