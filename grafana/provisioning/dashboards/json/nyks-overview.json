@@ -247,7 +247,7 @@
       "title": "Errors — All Services",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": true },
-      "targets": [{ "expr": "{stream=\"stderr\"}", "refId": "A" }, { "expr": "{stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
+      "targets": [{ "expr": "{stream=\"stderr\"} |~ \"(?i)error\"", "refId": "A" }, { "expr": "{stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -256,7 +256,7 @@
       "id": 18,
       "title": "Error Rate by Service",
       "type": "timeseries",
-      "targets": [{ "expr": "sum by (service, host)(rate({stream=\"stderr\"}[5m])) + sum by (service, host)(rate({stream=\"stdout\"} |~ \"(?i)error\" [5m]))", "legendFormat": "{{ host }}/{{ service }}" }]
+      "targets": [{ "expr": "sum by (service, host)(rate({stream=\"stderr\"} |~ \"(?i)error\" [5m])) + sum by (service, host)(rate({stream=\"stdout\"} |~ \"(?i)error\" [5m]))", "legendFormat": "{{ host }}/{{ service }}" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -265,7 +265,7 @@
       "id": 19,
       "title": "Error Volume by Host",
       "type": "timeseries",
-      "targets": [{ "expr": "sum by (host)(rate({stream=\"stderr\"}[5m]))", "legendFormat": "{{ host }}" }]
+      "targets": [{ "expr": "sum by (host)(rate({stream=\"stderr\"} |~ \"(?i)error\" [5m])) + sum by (host)(rate({stream=\"stdout\"} |~ \"(?i)error\" [5m]))", "legendFormat": "{{ host }}" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -274,7 +274,7 @@
       "title": "Errors by Service",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{service=~\"$service\", stream=\"stderr\"}", "refId": "A" }, { "expr": "{service=~\"$service\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
+      "targets": [{ "expr": "{service=~\"$service\", stream=\"stderr\"} |~ \"(?i)error\"", "refId": "A" }, { "expr": "{service=~\"$service\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -283,7 +283,7 @@
       "title": "Errors by Host",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{host=~\"$host\", stream=\"stderr\"}", "refId": "A" }, { "expr": "{host=~\"$host\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
+      "targets": [{ "expr": "{host=~\"$host\", stream=\"stderr\"} |~ \"(?i)error\"", "refId": "A" }, { "expr": "{host=~\"$host\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     }
   ],
   "refresh": "30s",
