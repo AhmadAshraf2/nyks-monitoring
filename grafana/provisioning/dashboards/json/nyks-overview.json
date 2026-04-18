@@ -170,32 +170,6 @@
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
-      "fieldConfig": {
-        "defaults": {
-          "color": { "mode": "thresholds" },
-          "thresholds": { "steps": [{ "color": "blue", "value": null }] },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": { "h": 6, "w": 4, "x": 0, "y": 15 },
-      "id": 10,
-      "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
-      "title": "Total Minted Sats",
-      "type": "stat",
-      "targets": [{ "expr": "tx_msg_confirm_btc_deposit_total", "legendFormat": "sats" }]
-    },
-    {
-      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
-      "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10 } }, "overrides": [] },
-      "gridPos": { "h": 6, "w": 8, "x": 4, "y": 15 },
-      "id": 11,
-      "title": "Mint Rate",
-      "type": "timeseries",
-      "targets": [{ "expr": "rate(tx_msg_confirm_btc_deposit_total[5m])", "legendFormat": "sats/s" }]
-    },
-    {
-      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10 } }, "overrides": [] },
       "gridPos": { "h": 6, "w": 6, "x": 12, "y": 15 },
       "id": 12,
