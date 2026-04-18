@@ -273,7 +273,7 @@
       "title": "Errors — All Services",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": true },
-      "targets": [{ "expr": "{stream=\"stderr\"} or {stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
+      "targets": [{ "expr": "{stream=\"stderr\"}", "refId": "A" }, { "expr": "{stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -300,7 +300,7 @@
       "title": "Errors by Service",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{service=~\"$service\", stream=\"stderr\"} or {service=~\"$service\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
+      "targets": [{ "expr": "{service=~\"$service\", stream=\"stderr\"}", "refId": "A" }, { "expr": "{service=~\"$service\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     },
     {
       "datasource": { "type": "loki", "uid": "P8E80F9AEF21F6940" },
@@ -309,7 +309,7 @@
       "title": "Errors by Host",
       "type": "logs",
       "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true },
-      "targets": [{ "expr": "{host=~\"$host\", stream=\"stderr\"} or {host=~\"$host\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "A" }]
+      "targets": [{ "expr": "{host=~\"$host\", stream=\"stderr\"}", "refId": "A" }, { "expr": "{host=~\"$host\", stream=\"stdout\"} |~ \"(?i)error\"", "refId": "B" }]
     }
   ],
   "refresh": "30s",
