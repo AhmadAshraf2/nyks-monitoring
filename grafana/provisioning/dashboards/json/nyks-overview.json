@@ -28,7 +28,7 @@
       "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Block Height",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_consensus_height", "legendFormat": "height" }]
+      "targets": [{ "expr": "max(tendermint_consensus_height)", "legendFormat": "height" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -45,7 +45,7 @@
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Block Time",
       "type": "stat",
-      "targets": [{ "expr": "1 / rate(tendermint_consensus_height[5m])", "legendFormat": "seconds/block" }]
+      "targets": [{ "expr": "1 / max(rate(tendermint_consensus_height[5m]))", "legendFormat": "seconds/block" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -67,7 +67,7 @@
       "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Peers",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_p2p_peers", "legendFormat": "peers" }]
+      "targets": [{ "expr": "avg(tendermint_p2p_peers)", "legendFormat": "peers" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -76,7 +76,7 @@
       "id": 4,
       "title": "Mempool Size",
       "type": "timeseries",
-      "targets": [{ "expr": "tendermint_mempool_size", "legendFormat": "txs" }]
+      "targets": [{ "expr": "max(tendermint_mempool_size)", "legendFormat": "txs" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -85,7 +85,7 @@
       "id": 5,
       "title": "TX Rate",
       "type": "timeseries",
-      "targets": [{ "expr": "rate(tendermint_consensus_num_txs[5m])", "legendFormat": "tx/s" }]
+      "targets": [{ "expr": "max(rate(tendermint_consensus_num_txs[5m]))", "legendFormat": "tx/s" }]
     },
     {
       "collapsed": false,
@@ -101,7 +101,7 @@
       "id": 6,
       "title": "Consensus Rounds",
       "type": "timeseries",
-      "targets": [{ "expr": "tendermint_consensus_rounds", "legendFormat": "rounds" }]
+      "targets": [{ "expr": "max(tendermint_consensus_rounds)", "legendFormat": "rounds" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -117,7 +117,7 @@
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Validators",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_consensus_validators", "legendFormat": "total" }]
+      "targets": [{ "expr": "max(tendermint_consensus_validators)", "legendFormat": "total" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -138,7 +138,7 @@
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Missing Validators",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_consensus_missing_validators", "legendFormat": "missing" }]
+      "targets": [{ "expr": "max(tendermint_consensus_missing_validators)", "legendFormat": "missing" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -159,7 +159,7 @@
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Byzantine Validators",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_consensus_byzantine_validators", "legendFormat": "byzantine" }]
+      "targets": [{ "expr": "max(tendermint_consensus_byzantine_validators)", "legendFormat": "byzantine" }]
     },
     {
       "collapsed": false,
@@ -239,7 +239,7 @@
       "id": 14,
       "title": "Go Goroutines",
       "type": "timeseries",
-      "targets": [{ "expr": "go_goroutines{job=\"nyks-tendermint\"}", "legendFormat": "goroutines" }]
+      "targets": [{ "expr": "avg(go_goroutines{job=\"nyks-tendermint\"})", "legendFormat": "goroutines" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -248,7 +248,7 @@
       "id": 15,
       "title": "Memory (Alloc)",
       "type": "timeseries",
-      "targets": [{ "expr": "go_memstats_alloc_bytes{job=\"nyks-tendermint\"}", "legendFormat": "alloc" }]
+      "targets": [{ "expr": "avg(go_memstats_alloc_bytes{job=\"nyks-tendermint\"})", "legendFormat": "alloc" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -257,7 +257,7 @@
       "id": 16,
       "title": "Open File Descriptors",
       "type": "timeseries",
-      "targets": [{ "expr": "process_open_fds{job=\"nyks-tendermint\"}", "legendFormat": "open fds" }]
+      "targets": [{ "expr": "avg(process_open_fds{job=\"nyks-tendermint\"})", "legendFormat": "open fds" }]
     },
     {
       "collapsed": false,
