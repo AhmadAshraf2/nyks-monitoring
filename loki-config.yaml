@@ -30,13 +30,9 @@ limits_config:
   ingestion_rate_mb: 10
   ingestion_burst_size_mb: 20
   max_query_parallelism: 32
-  max_outstanding_per_tenant: 2048
 
 query_scheduler:
   max_outstanding_requests_per_tenant: 2048
-
-frontend:
-  max_outstanding_per_tenant: 2048
 
 storage_config:
   boltdb_shipper:
