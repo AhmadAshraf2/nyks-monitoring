@@ -1,0 +1,11 @@
+apiVersion: 1
+
+contactPoints:
+  - orgId: 1
+    name: nyks-email
+    receivers:
+      - uid: nyks-email-1
+        type: email
+        settings:
+          addresses: twilight.fin7@gmail.com;ahmadashraf250@gmail.com
+          singleEmail: false
