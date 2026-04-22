@@ -34,6 +34,12 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-changeme}
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=twilight.fin7@gmail.com
+      - GF_SMTP_PASSWORD=${GMAIL_APP_PASSWORD}
+      - GF_SMTP_FROM_ADDRESS=twilight.fin7@gmail.com
+      - GF_SMTP_FROM_NAME=Nyks Monitoring
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
