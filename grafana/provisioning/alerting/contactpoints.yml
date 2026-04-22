@@ -2,10 +2,15 @@ apiVersion: 1
 
 contactPoints:
   - orgId: 1
-    name: nyks-email
+    name: nyks-alerts
     receivers:
       - uid: nyks-email-1
         type: email
         settings:
           addresses: twilight.fin7@gmail.com;ahmadashraf250@gmail.com
           singleEmail: false
+      - uid: nyks-discord-1
+        type: discord
+        settings:
+          url: https://discord.com/api/webhooks/1475865854947102835/eWlkeKZEJJRbudYaQKmGArWGz-0GrMywyhzFR9jaAsNhxnMK4eR_PGTz_AZUsTofeNVc
+          use_discord_username: true
