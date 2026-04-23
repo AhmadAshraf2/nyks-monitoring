@@ -7,7 +7,7 @@ contactPoints:
       - uid: nyks-email-1
         type: email
         settings:
-          addresses: twilight.fin7@gmail.com;ahmadashraf250@gmail.com
+          addresses: twilight.fin7@gmail.com
           singleEmail: false
       - uid: nyks-discord-1
         type: discord
