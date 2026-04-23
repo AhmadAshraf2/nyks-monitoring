@@ -40,7 +40,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 4, "x": 4, "y": 1 },
+      "gridPos": { "h": 6, "w": 3, "x": 4, "y": 1 },
       "id": 2,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Block Time",
@@ -52,22 +52,16 @@
       "fieldConfig": {
         "defaults": {
           "color": { "mode": "thresholds" },
-          "thresholds": {
-            "steps": [
-              { "color": "red", "value": null },
-              { "color": "yellow", "value": 1 },
-              { "color": "green", "value": 3 }
-            ]
-          }
+          "thresholds": { "steps": [{ "color": "green", "value": null }] }
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 4, "x": 8, "y": 1 },
-      "id": 3,
-      "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
-      "title": "Peers",
+      "gridPos": { "h": 6, "w": 5, "x": 7, "y": 1 },
+      "id": 7,
+      "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Validators",
       "type": "stat",
-      "targets": [{ "expr": "tendermint_p2p_peers", "legendFormat": "{{ instance }}" }]
+      "targets": [{ "expr": "max(tendermint_consensus_validators)", "legendFormat": "total" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -97,7 +91,7 @@
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
       "fieldConfig": { "defaults": { "custom": { "drawStyle": "line", "fillOpacity": 10 } }, "overrides": [] },
-      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 8 },
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 8 },
       "id": 6,
       "title": "Consensus Rounds",
       "type": "timeseries",
@@ -108,16 +102,22 @@
       "fieldConfig": {
         "defaults": {
           "color": { "mode": "thresholds" },
-          "thresholds": { "steps": [{ "color": "green", "value": null }] }
+          "thresholds": {
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "green", "value": 3 }
+            ]
+          }
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 8 },
-      "id": 7,
-      "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
-      "title": "Validators",
+      "gridPos": { "h": 6, "w": 10, "x": 8, "y": 8 },
+      "id": 3,
+      "options": { "colorMode": "value", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Peers",
       "type": "stat",
-      "targets": [{ "expr": "max(tendermint_consensus_validators)", "legendFormat": "total" }]
+      "targets": [{ "expr": "tendermint_p2p_peers", "legendFormat": "{{ instance }}" }]
     },
     {
       "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
@@ -133,7 +133,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 8 },
+      "gridPos": { "h": 6, "w": 3, "x": 18, "y": 8 },
       "id": 8,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Missing Validators",
@@ -154,7 +154,7 @@
         },
         "overrides": []
       },
-      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 8 },
+      "gridPos": { "h": 6, "w": 3, "x": 21, "y": 8 },
       "id": 9,
       "options": { "colorMode": "value", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
       "title": "Byzantine Validators",
