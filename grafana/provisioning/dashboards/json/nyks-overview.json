@@ -246,7 +246,7 @@
       "id": 17,
       "title": "Error Logs",
       "type": "logs",
-      "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": false, "showLabels": true, "showCommonLabels": false },
+      "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": false, "showLabels": true, "showCommonLabels": true },
       "targets": [{ "expr": "{service=~\"$service\", host=~\"$host\"} |~ \"(?i)error\" !~ \"(?i)duplicate\" !~ \"\\\"error\\\":null\" !~ \"error=null\"", "refId": "A" }]
     }
   ],
