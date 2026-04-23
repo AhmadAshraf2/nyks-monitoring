@@ -245,8 +245,21 @@
       "gridPos": { "h": 16, "w": 24, "x": 0, "y": 29 },
       "id": 17,
       "title": "Error Logs",
-      "type": "logs",
-      "options": { "showTime": true, "sortOrder": "Descending", "enableLogDetails": true, "prettifyLogMessage": false, "showLabels": true, "showCommonLabels": true },
+      "type": "table",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "Time" }, "properties": [{ "id": "custom.width", "value": 180 }] },
+          { "matcher": { "id": "byName", "options": "host" }, "properties": [{ "id": "custom.width", "value": 150 }] },
+          { "matcher": { "id": "byName", "options": "service" }, "properties": [{ "id": "custom.width", "value": 100 }] },
+          { "matcher": { "id": "byName", "options": "Line" }, "properties": [{ "id": "custom.width" }] }
+        ]
+      },
+      "options": { "showHeader": true, "sortBy": [{ "displayName": "Time", "desc": true }] },
+      "transformations": [
+        { "id": "extractFields", "options": { "source": "labels", "format": "kvp" } },
+        { "id": "organize", "options": { "excludeByName": { "id": false, "tsNs": true, "labels": true, "filename": true, "stream": true }, "indexByName": { "Time": 0, "host": 1, "service": 2, "Line": 3 }, "renameByName": {} } }
+      ],
       "targets": [{ "expr": "{service=~\"$service\", host=~\"$host\"} |~ \"(?i)error\" !~ \"(?i)duplicate\" !~ \"\\\"error\\\":null\" !~ \"error=null\"", "refId": "A" }]
     }
   ],
