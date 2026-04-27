@@ -1,0 +1,41 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://MONITORING_IP:3100/loki/api/v1/push
+    external_labels:
+      host: HOSTNAME  # change per server: tmkms-1, tmkms-2, etc.
+    batchwait: 1s
+    batchsize: 1048576
+
+scrape_configs:
+  # tmkms stderr logs
+  - job_name: tmkms-err
+    static_configs:
+      - targets: [localhost]
+        labels:
+          service: tmkms
+          stream: stderr
+          __path__: /var/log/supervisor/tmkms.err.log
+
+  # tmkms stdout logs
+  - job_name: tmkms-out
+    static_configs:
+      - targets: [localhost]
+        labels:
+          service: tmkms
+          stream: stdout
+          __path__: /var/log/supervisor/tmkms.out.log
+
+  # bitcoind logs (comment out this section on tmkms-1)
+  - job_name: bitcoind
+    static_configs:
+      - targets: [localhost]
+        labels:
+          service: bitcoind
+          stream: stdout
+          __path__: /home/ubuntu/.bitcoin/debug.log

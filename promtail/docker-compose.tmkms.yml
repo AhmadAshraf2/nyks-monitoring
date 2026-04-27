@@ -1,0 +1,18 @@
+# Deploy this on each TMKMS server
+# Run: docker compose -f docker-compose.tmkms.yml up -d
+
+services:
+  promtail:
+    image: grafana/promtail:2.9.4
+    container_name: promtail
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - promtail-positions:/tmp
+      - /var/log:/var/log:ro
+      - /home/ubuntu/.bitcoin:/home/ubuntu/.bitcoin:ro
+    command: -config.file=/etc/promtail/config.yaml
+    restart: unless-stopped
+    network_mode: host
+
+volumes:
+  promtail-positions:
